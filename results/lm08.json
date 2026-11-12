@@ -1,0 +1,50 @@
+{
+ "model": "hyb_gru_nope_w1024",
+ "repo": "(new) hybrid with sliding-window attention",
+ "target_repo": "LM_Dec_Long_HybridGRU_NoPE_W1024",
+ "category": "Long",
+ "upstream": "lucidrains/x-transformers (MIT), pip 2.31.7 + torch.nn",
+ "unified": [
+  "hyb_gru_nope with attention limited to the last 1024 tokens"
+ ],
+ "torch": "2.5.1+cu124",
+ "gpu": "NVIDIA GeForce RTX 3070 Ti",
+ "stage": "lm08",
+ "started": "2026-11-09 20:36:57",
+ "smoke": false,
+ "steps": 6000,
+ "capped": false,
+ "bf16": true,
+ "final_bits": 3.2883729499736254,
+ "test": {
+  "512": {
+   "bits_full": 3.2454021387509733
+  },
+  "2048": {
+   "bits_full": 3.2359166506209487,
+   "bits_last512": 3.227078118227807,
+   "gain_from_history": -0.008838532393141474
+  },
+  "8192": {
+   "bits_full": 3.254148015490962,
+   "bits_last512": 3.2413949429858695,
+   "gain_from_history": -0.01275307250509261
+  }
+ },
+ "config": {
+  "train_len": 512,
+  "test_lens": [
+   512,
+   2048,
+   8192
+  ],
+  "batch": 16,
+  "steps": 6000,
+  "eval_every": 1000,
+  "eval_samples": 64,
+  "tail": 256,
+  "max_hours": 1.5
+ },
+ "minutes": 10.5,
+ "seconds": 633.9
+}
